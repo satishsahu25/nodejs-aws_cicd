@@ -1,6 +1,14 @@
 #!/bin/bash
 
-echo 'run application_start.sh: ' >> /home/ubuntu/nodejs-aws_cicd/deploy.log
+APP_DIR="/home/ubuntu/node_demoapp"
+LOG_FILE="/home/ubuntu/node_demoapp/app.log"
 
-echo 'pm2 restart nodejs-express-app' >> /home/ubuntu/nodejs-aws_cicd/deploy.log
-pm2 restart nodejs-express-app >> /home/ubuntu/nodejs-aws_cicd/deploy.log
+# Stop existing app if running
+echo "Stopping existing Node.js app..."
+pkill node || true
+
+cd "$APP_DIR"
+
+echo "Starting Node.js app..."
+# You can replace this with pm2 if preferred
+nohup node app.js > "$LOG_FILE" 2>&1 &
