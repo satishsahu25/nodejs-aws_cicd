@@ -12,4 +12,4 @@ echo "Installing dependencies..."
 npm ci
 
 echo "Building the project..."
-npm run build
+# npm run build
